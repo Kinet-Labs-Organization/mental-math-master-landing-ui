@@ -14,7 +14,7 @@ export function Footer() {
               <span className="text-white font-bold">Mental Math Master</span>
             </div>
             <p className="text-slate-400 text-sm">
-              Level up your math skills and become a calculation superstar!
+              Level up your math skills and become a calculation superstar
             </p>
           </div>
 

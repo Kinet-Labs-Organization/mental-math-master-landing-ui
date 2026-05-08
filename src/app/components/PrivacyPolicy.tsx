@@ -141,6 +141,24 @@ export function PrivacyPolicy() {
                   Contact page or email us directly.
                 </p>
               </section>
+
+              <section className="pt-4 border-t border-white/10">
+                <h2 className="text-2xl text-white mb-4">Company Information</h2>
+                <div className="space-y-3 text-slate-300">
+                  <p>
+                    <span className="text-white font-semibold">App Name:</span> Mental Math Master
+                  </p>
+                  <p>
+                    <span className="text-white font-semibold">Company Name:</span> Kinet Labs
+                  </p>
+                  <p>
+                    <span className="text-white font-semibold">Email:</span> kinetlabs@gmail.com
+                  </p>
+                  <p>
+                    <span className="text-white font-semibold">Location:</span> 141/1, R.K Road, T.S.G Sarani, Kolkata 700 079, West Bengal, India
+                  </p>
+                </div>
+              </section>
             </CardContent>
           </Card>
         </div>
