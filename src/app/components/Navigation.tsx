@@ -1,5 +1,5 @@
 import { Link } from 'react-router';
-import { Menu, X } from 'lucide-react';
+import { Facebook, Instagram, Menu, X } from 'lucide-react';
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Button } from './ui/button';
@@ -24,13 +24,30 @@ export function Navigation() {
             <span className="text-lg text-white font-bold hidden sm:inline">Mental Math Master</span>
           </Link>
 
-          <div className="hidden md:flex items-center gap-6">
+          <div className="hidden md:flex items-center gap-4">
             <Link to="/about" className="text-slate-300 hover:text-white transition-colors hover:scale-110 duration-200">
               About
             </Link>
-            <Link to="/contact" className="text-slate-300 hover:text-white transition-colors hover:scale-110 duration-200">
-              Contact
-            </Link>
+            <div className="flex items-center gap-2">
+              <a
+                href="https://www.facebook.com/share/18sBaMSSkD/?mibextid=wwXIfr"
+                target="_blank"
+                rel="noreferrer"
+                className="text-[#1877F2] hover:opacity-90 transition-all hover:scale-110 duration-200"
+                aria-label="Facebook"
+              >
+                <Facebook className="w-5 h-5" />
+              </a>
+              <a
+                href="https://www.instagram.com/mentalmathmaster?igsh=MTEyaTN1cDBsb2p1cQ%3D%3D&utm_source=qr"
+                target="_blank"
+                rel="noreferrer"
+                className="text-[#E1306C] hover:opacity-90 transition-all hover:scale-110 duration-200"
+                aria-label="Instagram"
+              >
+                <Instagram className="w-5 h-5" />
+              </a>
+            </div>
             <Button
               type="button"
               onClick={() => setDownloadModalOpen(true)}
@@ -65,13 +82,30 @@ export function Navigation() {
               >
                 About
               </Link>
-              <Link
-                to="/contact"
-                className="block text-slate-300 hover:text-white transition-colors py-2"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                Contact
-              </Link>
+              <div className="flex items-center gap-4 py-2">
+                <a
+                  href="https://www.facebook.com/share/18sBaMSSkD/?mibextid=wwXIfr"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="flex items-center gap-2 text-[#1877F2] transition-colors"
+                  onClick={() => setMobileMenuOpen(false)}
+                  aria-label="Facebook"
+                >
+                  <Facebook className="w-5 h-5" />
+                  <span className="text-slate-300">Facebook</span>
+                </a>
+                <a
+                  href="https://www.instagram.com/mentalmathmaster?igsh=MTEyaTN1cDBsb2p1cQ%3D%3D&utm_source=qr"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="flex items-center gap-2 transition-colors"
+                  onClick={() => setMobileMenuOpen(false)}
+                  aria-label="Instagram"
+                >
+                  <Instagram className="w-5 h-5 text-[#E1306C]" />
+                  <span className="text-slate-300">Instagram</span>
+                </a>
+              </div>
               <Button
                 type="button"
                 onClick={() => {

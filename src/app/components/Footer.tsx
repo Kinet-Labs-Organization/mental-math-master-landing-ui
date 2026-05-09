@@ -1,5 +1,5 @@
 import { Link } from 'react-router';
-import { Mail, Shield, FileText, Cookie, AlertCircle } from 'lucide-react';
+import { Mail, Shield, FileText, Cookie, AlertCircle, Facebook, Instagram } from 'lucide-react';
 import { useState } from 'react';
 import { DownloadModal } from './DownloadModal';
 
@@ -89,6 +89,28 @@ export function Footer() {
                   <Mail className="w-3 h-3" />
                   Contact Us
                 </Link>
+              </li>
+              <li>
+                <a
+                  href="https://www.facebook.com/share/18sBaMSSkD/?mibextid=wwXIfr"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-slate-400 hover:text-white transition-colors text-sm flex items-center gap-1"
+                >
+                  <Facebook className="w-3 h-3" />
+                  Facebook
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://www.instagram.com/mentalmathmaster?igsh=MTEyaTN1cDBsb2p1cQ%3D%3D&utm_source=qr"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-slate-400 hover:text-white transition-colors text-sm flex items-center gap-1"
+                >
+                  <Instagram className="w-3 h-3" />
+                  Instagram
+                </a>
               </li>
             </ul>
           </div>
