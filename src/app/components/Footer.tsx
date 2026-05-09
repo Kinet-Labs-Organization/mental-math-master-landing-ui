@@ -1,7 +1,11 @@
 import { Link } from 'react-router';
 import { Brain, Mail, Shield, FileText, Cookie, AlertCircle } from 'lucide-react';
+import { useState } from 'react';
+import { DownloadModal } from './DownloadModal';
 
 export function Footer() {
+  const [downloadModalOpen, setDownloadModalOpen] = useState(false);
+
   return (
     <footer className="relative border-t border-purple-500/20 bg-black/80 backdrop-blur-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -27,14 +31,18 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <a href="#features" className="text-slate-400 hover:text-white transition-colors text-sm">
-                  Features
-                </a>
+                <button
+                  type="button"
+                  onClick={() => setDownloadModalOpen(true)}
+                  className="text-slate-400 hover:text-white transition-colors text-sm"
+                >
+                  Download
+                </button>
               </li>
               <li>
-                <a href="#download" className="text-slate-400 hover:text-white transition-colors text-sm">
-                  Download
-                </a>
+                <Link to="/games" className="text-slate-400 hover:text-white transition-colors text-sm">
+                  Quick Games
+                </Link>
               </li>
             </ul>
           </div>
@@ -43,13 +51,13 @@ export function Footer() {
             <h4 className="text-white mb-4">Legal</h4>
             <ul className="space-y-2">
               <li>
-                <Link to="/privacy" className="text-slate-400 hover:text-white transition-colors text-sm flex items-center gap-1">
+                <Link to="/privacypolicy" className="text-slate-400 hover:text-white transition-colors text-sm flex items-center gap-1">
                   <Shield className="w-3 h-3" />
                   Privacy Policy
                 </Link>
               </li>
               <li>
-                <Link to="/terms" className="text-slate-400 hover:text-white transition-colors text-sm flex items-center gap-1">
+                <Link to="/termsofuse" className="text-slate-400 hover:text-white transition-colors text-sm flex items-center gap-1">
                   <FileText className="w-3 h-3" />
                   Terms of Use
                 </Link>
@@ -61,7 +69,7 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <Link to="/cookies" className="text-slate-400 hover:text-white transition-colors text-sm flex items-center gap-1">
+                <Link to="/cookiepolicy" className="text-slate-400 hover:text-white transition-colors text-sm flex items-center gap-1">
                   <Cookie className="w-3 h-3" />
                   Cookie Policy
                 </Link>
@@ -88,25 +96,26 @@ export function Footer() {
               © 2026 Mental Math Master. All rights reserved.
             </p>
             <div className="flex gap-4">
-              <a
-                href="#"
+              <Link
+                to="/download/ios"
                 className="text-slate-400 hover:text-pink-400 transition-colors"
                 aria-label="App Store"
               >
                 App Store
-              </a>
+              </Link>
               <span className="text-slate-600">|</span>
-              <a
-                href="#"
+              <Link
+                to="/download/android"
                 className="text-slate-400 hover:text-pink-400 transition-colors"
                 aria-label="Google Play"
               >
                 Google Play
-              </a>
+              </Link>
             </div>
           </div>
         </div>
       </div>
+      <DownloadModal open={downloadModalOpen} onClose={() => setDownloadModalOpen(false)} />
     </footer>
   );
 }
