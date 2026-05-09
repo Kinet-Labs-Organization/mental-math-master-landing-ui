@@ -111,8 +111,13 @@ export function Home() {
                 }}
               >
                 <span className="absolute inset-x-0 -bottom-3 h-6 rounded-full bg-gradient-to-r from-orange-500/35 via-pink-500/35 to-purple-500/35 blur-2xl animate-pulse" />
-                <span className="relative inline-flex items-center rounded-3xl border border-pink-400/25 bg-black/20 px-4 py-2 backdrop-blur-sm shadow-2xl shadow-pink-500/10 text-pink-200">
-                  Abacus
+                <span className="relative inline-flex items-center gap-2 rounded-3xl border border-pink-400/25 bg-black/20 px-5 py-3 text-3xl md:text-4xl backdrop-blur-sm shadow-2xl shadow-pink-500/10 text-pink-200">
+                  <img
+                    src="/mmm-logo.png"
+                    alt="Mental Math Master"
+                    className="h-14 w-14 rounded-xl object-cover shrink-0"
+                  />
+                  <span className="font-black tracking-tight leading-none">Abacus</span>
                 </span>
               </motion.span>
               <br />
@@ -133,7 +138,7 @@ export function Home() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
               <Button
                 size="lg"
-                className="bg-gradient-to-r from-orange-500 via-pink-500 to-purple-600 hover:from-orange-400 hover:via-pink-400 hover:to-purple-500 text-white shadow-2xl shadow-pink-500/50 px-8 py-7 text-lg hover:scale-105 transition-transform min-h-[4.75rem]"
+                className="w-full sm:flex-1 bg-gradient-to-r from-orange-500 via-pink-500 to-purple-600 hover:from-orange-400 hover:via-pink-400 hover:to-purple-500 text-white shadow-2xl shadow-pink-500/50 px-8 py-7 text-lg hover:scale-105 transition-transform min-h-[4.75rem]"
                 asChild
               >
                 <Link to="/download/ios">
@@ -150,7 +155,7 @@ export function Home() {
               </Button>
               <Button
                 size="lg"
-                className="bg-gradient-to-r from-purple-600 via-pink-500 to-orange-500 hover:from-purple-500 hover:via-pink-400 hover:to-orange-400 text-white shadow-2xl shadow-purple-500/50 px-8 py-7 text-lg hover:scale-105 transition-transform min-h-[4.75rem]"
+                className="w-full sm:flex-1 bg-gradient-to-r from-purple-600 via-pink-500 to-orange-500 hover:from-purple-500 hover:via-pink-400 hover:to-orange-400 text-white shadow-2xl shadow-purple-500/50 px-8 py-7 text-lg hover:scale-105 transition-transform min-h-[4.75rem]"
                 asChild
               >
                 <Link to="/download/android">

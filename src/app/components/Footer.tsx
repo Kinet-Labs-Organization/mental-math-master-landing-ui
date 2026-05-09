@@ -1,5 +1,5 @@
 import { Link } from 'react-router';
-import { Brain, Mail, Shield, FileText, Cookie, AlertCircle } from 'lucide-react';
+import { Mail, Shield, FileText, Cookie, AlertCircle } from 'lucide-react';
 import { useState } from 'react';
 import { DownloadModal } from './DownloadModal';
 
@@ -12,8 +12,12 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="space-y-4">
             <div className="flex items-center gap-2">
-              <div className="bg-gradient-to-r from-orange-500 via-pink-500 to-purple-600 p-2 rounded-lg">
-                <Brain className="w-5 h-5 text-white" />
+              <div className="h-11 w-11 overflow-hidden rounded-lg border border-white/10 bg-white/5 shadow-lg shadow-pink-500/15">
+                <img
+                  src="/mmm-logo.png"
+                  alt="Mental Math Master"
+                  className="h-full w-full object-cover"
+                />
               </div>
               <span className="text-white font-bold">Mental Math Master</span>
             </div>

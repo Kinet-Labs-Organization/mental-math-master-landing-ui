@@ -1,7 +1,7 @@
 import { Navigation } from './Navigation';
 import { Footer } from './Footer';
 import { motion } from 'motion/react';
-import { Brain, Target, Users, Zap, Star, Rocket, Trophy, BookOpen, Gamepad2, Lightbulb, GraduationCap } from 'lucide-react';
+import { Target, Users, Zap, Star, Rocket, Trophy, BookOpen, Gamepad2, Lightbulb, GraduationCap } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
 
 export function About() {
@@ -23,8 +23,12 @@ export function About() {
             animate={{ opacity: 1, y: 0 }}
             className="text-center mb-16"
           >
-            <div className="inline-flex items-center justify-center w-24 h-24 bg-gradient-to-br from-orange-500 via-pink-500 to-purple-600 rounded-3xl mb-6 shadow-2xl shadow-pink-500/50 animate-bounce">
-              <Brain className="w-12 h-12 text-white" />
+            <div className="inline-flex items-center justify-center w-32 h-32 rounded-[2rem] mb-6 overflow-hidden border border-white/10 bg-white/5 shadow-2xl shadow-pink-500/40">
+              <img
+                src="/mmm-logo.png"
+                alt="Mental Math Master"
+                className="h-full w-full object-cover"
+              />
             </div>
             <h1 className="text-6xl md:text-7xl mb-6 text-white font-black flex items-center justify-center gap-4 flex-wrap">
               <label className='text-4xl md:text-5xl font-bold text-white'>About Mental Math Master</label>
@@ -196,6 +200,16 @@ export function About() {
               <p className="text-xl text-slate-300 mb-6">
                 Download Mental Math Master today and become the math champion you were meant to be
               </p>
+            </div>
+
+            <div className="flex justify-center">
+              <div className="w-full max-w-md overflow-hidden rounded-3xl border border-white/10 bg-white/5 shadow-2xl shadow-pink-500/15">
+                <img
+                  src="/mmm-desc-logo.png"
+                  alt="Mental Math Master description logo"
+                  className="w-full h-auto object-contain"
+                />
+              </div>
             </div>
           </div>
         </div>

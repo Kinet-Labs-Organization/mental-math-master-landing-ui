@@ -1,5 +1,5 @@
 import { Link } from 'react-router';
-import { Brain, Menu, X } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Button } from './ui/button';
@@ -14,13 +14,14 @@ export function Navigation() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <Link to="/" className="flex items-center gap-2 group">
-            <div className="relative">
-              <div className="absolute inset-0 bg-gradient-to-r from-orange-500 via-pink-500 to-purple-600 rounded-xl blur-md opacity-75 group-hover:opacity-100 transition-opacity animate-pulse" />
-              <div className="relative bg-gradient-to-r from-orange-500 via-pink-500 to-purple-600 p-2.5 rounded-xl">
-                <Brain className="w-6 h-6 text-white" />
-              </div>
+            <div className="relative h-12 w-12 overflow-hidden rounded-xl border border-white/10 bg-white/5 shadow-lg shadow-pink-500/20">
+              <img
+                src="/mmm-logo.png"
+                alt="Mental Math Master"
+                className="h-full w-full object-cover"
+              />
             </div>
-            <span className="text-lg text-white font-bold">Mental Math Master</span>
+            <span className="text-lg text-white font-bold hidden sm:inline">Mental Math Master</span>
           </Link>
 
           <div className="hidden md:flex items-center gap-6">
