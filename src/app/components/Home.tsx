@@ -21,9 +21,21 @@ import {
 } from 'lucide-react';
 import { Button } from './ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
+import {
+  Carousel,
+  type CarouselApi,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from './ui/carousel';
 import { Link } from 'react-router';
+import { useEffect, useState } from 'react';
 
 export function Home() {
+  const [championCarouselApi, setChampionCarouselApi] = useState<CarouselApi | null>(null);
+  const [isChampionCarouselHovered, setIsChampionCarouselHovered] = useState(false);
+
   const features = [
     {
       icon: Zap,
@@ -69,6 +81,128 @@ export function Home() {
       title: 'Level Up & Win',
       description: 'Unlock new levels, earn badges, and become a math master',
       icon: Trophy,
+    },
+  ];
+
+  useEffect(() => {
+    if (!championCarouselApi || isChampionCarouselHovered) return;
+
+    const intervalId = window.setInterval(() => {
+      championCarouselApi.scrollNext();
+    }, 5000);
+
+    return () => window.clearInterval(intervalId);
+  }, [championCarouselApi, isChampionCarouselHovered]);
+
+  const championShowcases = [
+    {
+      key: 'india',
+      accent: 'border-yellow-400/40 bg-gradient-to-br from-yellow-500/10 via-pink-500/10 to-purple-600/10 shadow-pink-500/20',
+      glow:
+        'bg-[radial-gradient(circle_at_top_right,rgba(255,215,0,0.22),transparent_30%),radial-gradient(circle_at_bottom_left,rgba(236,72,153,0.18),transparent_35%)]',
+      badge: 'Indian Champions',
+      badgeDot: 'bg-yellow-300',
+      badgeTextClass: 'text-yellow-100',
+      title: 'A global stage, with Indian talent leading the way',
+      description:
+        'Indian children consistently shine at global abacus tournaments, showing exceptional speed and accuracy on the world stage',
+      flagSrc: '/india-flag.jpeg',
+      flagAlt: 'India flag',
+      flagLabel: 'India',
+      heroIcon: 'from-yellow-400 via-pink-500 to-purple-600',
+      heroShadow: 'shadow-pink-500/30',
+      sectionTitle: '2025 International Abacus World Cup (IAWC-3)',
+      cards: [
+        { name: 'Kushal', detail: 'Rank 1', tone: 'bg-yellow-500/10 border-yellow-400/25 text-yellow-100' },
+        { name: 'Jatin Prajapat', detail: 'Rank 2', tone: 'bg-pink-500/10 border-pink-400/25 text-pink-100' },
+        {
+          name: 'Aditya A. Wagh',
+          detail: 'Rank 3, 150 questions in under 5 minutes with 100% accuracy',
+          tone: 'bg-purple-500/10 border-purple-400/25 text-purple-100',
+        },
+      ],
+      highlights: [
+        {
+          title: '2026 Spotlight',
+          className: 'border-pink-400/20',
+          titleClass: 'text-pink-200',
+          items: [
+            {
+              name: 'Vihaan Pratap Singh',
+              text: '1st prize at the International Abacus Olympiad',
+            },
+            {
+              name: 'Shreyansh Kumar',
+              text: 'Triple Crown in 2026 across online and offline events',
+            },
+          ],
+        },
+        {
+          title: 'Global Honors',
+          className: 'border-cyan-400/20',
+          titleClass: 'text-cyan-200',
+          items: [
+            { name: 'Suryaansh', text: 'Champion title at the 22nd PAMA Global Competition' },
+            { name: 'Arush', text: '2nd Runner Up at the same competition in Ho Chi Minh City' },
+            {
+              name: 'Nainika Pandey',
+              text: '1st Place at the 4th International Level Abacus Arithmetic Competition 2025',
+            },
+            {
+              name: 'Pratyush Meshram',
+              text: '3rd Runner-Up at the PAMA Global Competition in Ho Chi Minh City',
+            },
+          ],
+        },
+      ],
+    },
+    {
+      key: 'usa',
+      accent: 'border-sky-400/40 bg-gradient-to-br from-sky-500/10 via-blue-500/10 to-red-500/10 shadow-sky-500/20',
+      glow:
+        'bg-[radial-gradient(circle_at_top_right,rgba(56,189,248,0.22),transparent_30%),radial-gradient(circle_at_bottom_left,rgba(239,68,68,0.16),transparent_35%)]',
+      badge: 'US Rising Stars',
+      badgeDot: 'bg-sky-300',
+      badgeTextClass: 'text-sky-100',
+      title: 'American talent making a global mark',
+      description:
+        'US kids are earning major honors in international abacus competitions with speed, consistency, and elite-level accuracy',
+      flagSrc: '/usa-flag.png',
+      flagAlt: 'USA flag',
+      flagLabel: 'USA',
+      heroIcon: 'from-sky-400 via-blue-500 to-red-500',
+      heroShadow: 'shadow-sky-500/30',
+      sectionTitle: '2025 International Online Abacus Olympiad',
+      cards: [
+        {
+          name: 'Shrish Dutta',
+          detail: 'Third Rank globally, 100% accuracy in 7 minutes',
+          tone: 'bg-sky-500/10 border-sky-400/25 text-sky-100',
+        },
+        {
+          name: 'Tanvi Batte',
+          detail: 'Top performer, 90% score',
+          tone: 'bg-blue-500/10 border-blue-400/25 text-blue-100',
+        },
+        {
+          name: 'Arav A. Menon',
+          detail: '96.66% in the Olympiad',
+          tone: 'bg-red-500/10 border-red-400/25 text-red-100',
+        },
+      ],
+      highlights: [
+        {
+          title: 'Super Champion Spotlight',
+          className: 'border-indigo-400/20',
+          titleClass: 'text-indigo-200',
+          items: [
+            {
+              name: 'Arvind Shah (Georgia, USA)',
+              text: "Recognized as a Super Champion at the SMA International Abacus Olympiad (SIAO) 2025, one of the competition's highest designations",
+            },
+          ],
+        },
+      ],
     },
   ];
 
@@ -309,173 +443,118 @@ export function Home() {
             whileHover={{ scale: 1.01 }}
             className="mt-6"
           >
-            <Card className="overflow-hidden border-2 border-yellow-400/40 bg-gradient-to-br from-yellow-500/10 via-pink-500/10 to-purple-600/10 backdrop-blur-xl shadow-2xl shadow-pink-500/20">
-              <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_top_right,rgba(255,215,0,0.22),transparent_30%),radial-gradient(circle_at_bottom_left,rgba(236,72,153,0.18),transparent_35%)]" />
-              <div className="relative grid grid-cols-1 lg:grid-cols-3 gap-0">
-                <CardHeader className="lg:col-span-1 relative z-10 border-b lg:border-b-0 lg:border-r border-white/10 self-start h-fit">
-                  <div className="mb-3 flex items-center gap-3">
-                    <div className="w-14 h-14 bg-gradient-to-br from-yellow-400 via-pink-500 to-purple-600 rounded-3xl flex items-center justify-center shadow-2xl shadow-pink-500/30 shrink-0">
-                      <Award className="w-10 h-10 text-white" />
-                    </div>
-                    <div className="inline-flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-3 py-2 backdrop-blur-sm w-full">
-                      <img
-                        src="/india-flag.jpeg"
-                        alt="India flag"
-                        className="h-10 w-16 rounded-md border border-black/20 object-cover shadow-sm"
-                      />
-                      <div>
-                        <p className="text-xs font-bold uppercase tracking-[0.25em] text-slate-300">
-                          India
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/15 w-fit mb-2">
-                    <span className="w-2 h-2 rounded-full bg-yellow-300 animate-pulse" />
-                    <span className="text-xs font-bold uppercase tracking-wider text-yellow-100">
-                      Indian Champions
-                    </span>
-                  </div>
-                  <CardTitle className="text-white text-3xl font-black leading-tight mb-1">
-                    A global stage, with Indian talent leading the way
-                  </CardTitle>
-                  <p className="text-slate-200 text-base leading-snug">
-                    Indian children consistently shine at global abacus tournaments, showing
-                    exceptional speed and accuracy on the world stage
-                  </p>
-                </CardHeader>
+            <Carousel
+              opts={{ align: 'start', loop: true }}
+              setApi={setChampionCarouselApi}
+              className="relative cursor-pointer"
+              onMouseEnter={() => setIsChampionCarouselHovered(true)}
+              onMouseLeave={() => setIsChampionCarouselHovered(false)}
+            >
+              <CarouselPrevious className="hidden lg:flex z-30 -left-4 border-white/15 bg-black/70 text-white shadow-xl backdrop-blur-md hover:bg-black/80" />
+              <CarouselNext className="hidden lg:flex z-30 -right-4 border-white/15 bg-black/70 text-white shadow-xl backdrop-blur-md hover:bg-black/80" />
+              <CarouselContent className="-ml-4">
+                {championShowcases.map((showcase) => (
+                  <CarouselItem key={showcase.key} className="pl-4">
+                    <Card className={`relative overflow-hidden border-2 backdrop-blur-xl shadow-2xl ${showcase.accent}`}>
+                      <div className={`absolute inset-0 pointer-events-none ${showcase.glow}`} />
+                      <div className="relative grid grid-cols-1 lg:grid-cols-3 gap-0">
+                        <CardHeader className="lg:col-span-1 relative z-10 border-b lg:border-b-0 lg:border-r border-white/10 self-start h-fit">
+                          <div className="mb-3 flex items-center gap-3">
+                            <div
+                              className={`w-14 h-14 bg-gradient-to-br ${showcase.heroIcon} rounded-3xl flex items-center justify-center shadow-2xl ${showcase.heroShadow} shrink-0`}
+                            >
+                              <Award className="w-10 h-10 text-white" />
+                            </div>
+                            <div className="inline-flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-3 py-2 backdrop-blur-sm w-full">
+                              <img
+                                src={showcase.flagSrc}
+                                alt={showcase.flagAlt}
+                                className="h-10 w-16 rounded-md border border-black/20 object-cover shadow-sm"
+                              />
+                              <div>
+                                <p className="text-xs font-bold uppercase tracking-[0.25em] text-slate-300">
+                                  {showcase.flagLabel}
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+                          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/15 w-fit mb-2">
+                            <span className={`w-2 h-2 rounded-full ${showcase.badgeDot} animate-pulse`} />
+                            <span className={`text-xs font-bold uppercase tracking-wider ${showcase.badgeTextClass}`}>
+                              {showcase.badge}
+                            </span>
+                          </div>
+                          <CardTitle className="text-white text-3xl font-black leading-tight mb-1">
+                            {showcase.title}
+                          </CardTitle>
+                          <p className="text-slate-200 text-base leading-snug">
+                            {showcase.description}
+                          </p>
+                        </CardHeader>
 
-                <CardContent className="lg:col-span-2 relative z-10 py-8">
-                  <div className="space-y-4">
-                    <div className="rounded-2xl bg-black/25 border border-yellow-400/20 p-5">
-                      <p className="text-sm text-yellow-200 font-semibold uppercase tracking-wide mb-3">
-                        2025 International Abacus World Cup (IAWC-3)
-                      </p>
-                      <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-                        <div className="rounded-xl bg-yellow-500/10 border border-yellow-400/25 p-4">
-                          <p className="text-yellow-100 font-bold">Kushal</p>
-                          <p className="text-sm text-slate-300">Rank 1</p>
-                        </div>
-                        <div className="rounded-xl bg-pink-500/10 border border-pink-400/25 p-4">
-                          <p className="text-pink-100 font-bold">Jatin Prajapat</p>
-                          <p className="text-sm text-slate-300">Rank 2</p>
-                        </div>
-                        <div className="rounded-xl bg-purple-500/10 border border-purple-400/25 p-4">
-                          <p className="text-purple-100 font-bold">Aditya A. Wagh</p>
-                          <p className="text-sm text-slate-300">Rank 3, 150 questions in under 5 minutes with 100% accuracy</p>
-                        </div>
-                      </div>
-                    </div>
+                        <CardContent className="lg:col-span-2 relative z-10 py-8">
+                          <div className="space-y-4">
+                            <div className="rounded-2xl bg-black/25 border border-white/10 p-5">
+                              <p className={`text-sm font-semibold uppercase tracking-wide mb-3 ${showcase.badgeTextClass}`}>
+                                {showcase.sectionTitle}
+                              </p>
+                              <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                                {showcase.cards.map((card) => (
+                                  <div key={card.name} className={`rounded-xl border p-4 ${card.tone}`}>
+                                    <p className="font-bold">{card.name}</p>
+                                    <p className="text-sm text-slate-300">{card.detail}</p>
+                                  </div>
+                                ))}
+                              </div>
+                            </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      <div className="rounded-2xl bg-black/25 border border-pink-400/20 p-5">
-                        <p className="text-sm text-pink-200 font-semibold uppercase tracking-wide mb-2">
-                          2026 Spotlight
-                        </p>
-                        <div className="space-y-2 text-slate-200">
-                          <p><span className="text-white font-bold">Vihaan Pratap Singh:</span> 1st prize at the International Abacus Olympiad</p>
-                          <p><span className="text-white font-bold">Shreyansh Kumar:</span> Triple Crown in 2026 across online and offline events</p>
-                        </div>
+                            {showcase.highlights.length > 1 ? (
+                              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                {showcase.highlights.map((highlight) => (
+                                  <div
+                                    key={highlight.title}
+                                    className={`rounded-2xl bg-black/25 border p-5 ${highlight.className}`}
+                                  >
+                                    <p className={`text-sm font-semibold uppercase tracking-wide mb-2 ${highlight.titleClass}`}>
+                                      {highlight.title}
+                                    </p>
+                                    <div className="space-y-2 text-slate-200">
+                                      {highlight.items.map((item) => (
+                                        <p key={item.name}>
+                                          <span className="text-white font-bold">{item.name}:</span> {item.text}
+                                        </p>
+                                      ))}
+                                    </div>
+                                  </div>
+                                ))}
+                              </div>
+                            ) : (
+                              showcase.highlights.map((highlight) => (
+                                <div
+                                  key={highlight.title}
+                                  className={`rounded-2xl bg-black/25 border p-5 ${highlight.className}`}
+                                >
+                                  <p className={`text-sm font-semibold uppercase tracking-wide mb-2 ${highlight.titleClass}`}>
+                                    {highlight.title}
+                                  </p>
+                                  <div className="space-y-2 text-slate-200">
+                                    {highlight.items.map((item) => (
+                                      <p key={item.name}>
+                                        <span className="text-white font-bold">{item.name}:</span> {item.text}
+                                      </p>
+                                    ))}
+                                  </div>
+                                </div>
+                              ))
+                            )}
+                          </div>
+                        </CardContent>
                       </div>
-
-                      <div className="rounded-2xl bg-black/25 border border-cyan-400/20 p-5">
-                        <p className="text-sm text-cyan-200 font-semibold uppercase tracking-wide mb-2">
-                          Global Honors
-                        </p>
-                        <div className="space-y-2 text-slate-200">
-                          <p><span className="text-white font-bold">Suryaansh:</span> Champion title at the 22nd PAMA Global Competition</p>
-                          <p><span className="text-white font-bold">Arush:</span> 2nd Runner Up at the same competition in Ho Chi Minh City</p>
-                          <p><span className="text-white font-bold">Nainika Pandey:</span> 1st Place at the 4th International Level Abacus Arithmetic Competition 2025</p>
-                          <p><span className="text-white font-bold">Pratyush Meshram:</span> 3rd Runner-Up at the PAMA Global Competition in Ho Chi Minh City</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </CardContent>
-              </div>
-            </Card>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.3 }}
-            whileHover={{ scale: 1.01 }}
-            className="mt-6"
-          >
-            <Card className="overflow-hidden border-2 border-sky-400/40 bg-gradient-to-br from-sky-500/10 via-blue-500/10 to-red-500/10 backdrop-blur-xl shadow-2xl shadow-sky-500/20">
-              <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_top_right,rgba(56,189,248,0.22),transparent_30%),radial-gradient(circle_at_bottom_left,rgba(239,68,68,0.16),transparent_35%)]" />
-              <div className="relative grid grid-cols-1 lg:grid-cols-3 gap-0">
-                <CardHeader className="lg:col-span-1 relative z-10 border-b lg:border-b-0 lg:border-r border-white/10 self-start h-fit">
-                  <div className="mb-3 flex items-center gap-3">
-                    <div className="w-14 h-14 bg-gradient-to-br from-sky-400 via-blue-500 to-red-500 rounded-3xl flex items-center justify-center shadow-2xl shadow-sky-500/30 shrink-0">
-                      <Award className="w-10 h-10 text-white" />
-                    </div>
-                    <div className="inline-flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-3 py-2 backdrop-blur-sm w-full">
-                      <img
-                        src="/usa-flag.png"
-                        alt="USA flag"
-                        className="h-10 w-16 rounded-md border border-black/20 object-cover shadow-sm"
-                      />
-                      <div>
-                        <p className="text-xs font-bold uppercase tracking-[0.25em] text-slate-300">
-                          USA
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/15 w-fit mb-2">
-                    <span className="w-2 h-2 rounded-full bg-sky-300 animate-pulse" />
-                    <span className="text-xs font-bold uppercase tracking-wider text-sky-100">
-                      US Rising Stars
-                    </span>
-                  </div>
-                  <CardTitle className="text-white text-3xl font-black leading-tight mb-1">
-                    American talent making a global mark
-                  </CardTitle>
-                  <p className="text-slate-200 text-base leading-snug">
-                    US kids are earning major honors in international abacus competitions with speed,
-                    consistency, and elite-level accuracy
-                  </p>
-                </CardHeader>
-
-                <CardContent className="lg:col-span-2 relative z-10 py-8">
-                  <div className="space-y-4">
-                    <div className="rounded-2xl bg-black/25 border border-sky-400/20 p-5">
-                      <p className="text-sm text-sky-200 font-semibold uppercase tracking-wide mb-3">
-                        2025 International Online Abacus Olympiad
-                      </p>
-                      <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-                        <div className="rounded-xl bg-sky-500/10 border border-sky-400/25 p-4">
-                          <p className="text-sky-100 font-bold">Shrish Dutta</p>
-                          <p className="text-sm text-slate-300">Third Rank globally, 100% accuracy in 7 minutes</p>
-                        </div>
-                        <div className="rounded-xl bg-blue-500/10 border border-blue-400/25 p-4">
-                          <p className="text-blue-100 font-bold">Tanvi Batte</p>
-                          <p className="text-sm text-slate-300">Top performer, 90% score</p>
-                        </div>
-                        <div className="rounded-xl bg-red-500/10 border border-red-400/25 p-4">
-                          <p className="text-red-100 font-bold">Arav A. Menon</p>
-                          <p className="text-sm text-slate-300">96.66% in the Olympiad</p>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="rounded-2xl bg-black/25 border border-indigo-400/20 p-5">
-                      <p className="text-sm text-indigo-200 font-semibold uppercase tracking-wide mb-2">
-                        Super Champion Spotlight
-                      </p>
-                      <p className="text-white font-bold text-lg">Arvind Shah (Georgia, USA)</p>
-                      <p className="text-sm text-slate-300 mt-2 leading-relaxed">
-                        Recognized as a Super Champion at the SMA International Abacus Olympiad
-                        (SIAO) 2025, one of the competition&apos;s highest designations
-                      </p>
-                    </div>
-                  </div>
-                </CardContent>
-              </div>
-            </Card>
+                    </Card>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+            </Carousel>
           </motion.div>
         </div>
       </section>
