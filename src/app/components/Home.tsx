@@ -89,7 +89,7 @@ export function Home() {
 
     const intervalId = window.setInterval(() => {
       championCarouselApi.scrollNext();
-    }, 5000);
+    }, 10000);
 
     return () => window.clearInterval(intervalId);
   }, [championCarouselApi, isChampionCarouselHovered]);
