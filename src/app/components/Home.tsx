@@ -26,15 +26,191 @@ import {
   type CarouselApi,
   CarouselContent,
   CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
 } from './ui/carousel';
 import { Link } from 'react-router';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
 export function Home() {
   const [championCarouselApi, setChampionCarouselApi] = useState<CarouselApi | null>(null);
   const [isChampionCarouselHovered, setIsChampionCarouselHovered] = useState(false);
+  const [selectedCountry, setSelectedCountry] = useState('USA');
+
+  const achievers = useMemo(
+    () => [
+      {
+        name: 'Aaryan Shukla',
+        country: 'India',
+        yearOfAchievement: 2026,
+        achievement: 'Italian Mental Calculation Championship',
+        position: 'World Record Holder',
+        descriptionOfAchievement:
+          'Set world records in square roots (8-digit imperfect) and 10-digit divisions on April 11, 2026.',
+      },
+      {
+        name: 'Arshiya',
+        country: 'India',
+        yearOfAchievement: 2026,
+        achievement: 'International Online Abacus Olympiad',
+        position: '1st Rank',
+        descriptionOfAchievement:
+          'Achieved a perfect 100% score with a global leading completion time of 6.44 minutes.',
+      },
+      {
+        name: 'Niranjana Pillay',
+        country: 'India',
+        yearOfAchievement: 2026,
+        achievement: 'International Online Abacus Olympiad',
+        position: '2nd Rank',
+        descriptionOfAchievement:
+          'Secured global second place with 100% accuracy in 6.52 minutes.',
+      },
+      {
+        name: 'Shrish Dutta',
+        country: 'USA',
+        yearOfAchievement: 2026,
+        achievement: 'International Online Abacus Olympiad',
+        position: '3rd Rank',
+        descriptionOfAchievement:
+          'Represented USA in the global top three with a perfect score in 7.05 minutes.',
+      },
+      {
+        name: 'Emily Wong',
+        country: 'USA',
+        yearOfAchievement: 2026,
+        achievement: 'International Abacus Competition (IAC)',
+        position: 'Grand Prix Champion',
+        descriptionOfAchievement:
+          'Secured 1st place in the Grand Prix and Soroban League Comprehensive categories.',
+      },
+      {
+        name: 'Akshat Yadav',
+        country: 'India',
+        yearOfAchievement: 2026,
+        achievement: 'Brainobrainfest Global Competition',
+        position: "Champion's Award",
+        descriptionOfAchievement:
+          'Ranked as a premier champion among 23,128 students from 76 countries.',
+      },
+      {
+        name: 'Abhinayasree Indraganti',
+        country: 'India',
+        yearOfAchievement: 2026,
+        achievement: 'International Online Abacus Olympiad',
+        position: '1st Place',
+        descriptionOfAchievement:
+          'Took the top spot with 100% accuracy in high-speed mental calculation.',
+      },
+      {
+        name: 'Neiva Chauhan',
+        country: 'Canada',
+        yearOfAchievement: 2026,
+        achievement: 'International Online Abacus Olympiad',
+        position: 'Top Rank',
+        descriptionOfAchievement:
+          'Achieved 100% accuracy in her age category for mental arithmetic.',
+      },
+      {
+        name: 'Bala Sunand Siddantapu',
+        country: 'USA',
+        yearOfAchievement: 2025,
+        achievement: 'UCMAS USA National Competition',
+        position: 'Champion (Category A)',
+        descriptionOfAchievement:
+          'Demonstrated superior speed in single-digit addition and subtraction using the visual abacus method.',
+      },
+      {
+        name: 'Aaryan Shukla',
+        country: 'India',
+        yearOfAchievement: 2024,
+        achievement: 'Mental Calculation World Cup',
+        position: '1st Overall (Champion)',
+        descriptionOfAchievement:
+          "Won the gold medal for 'Most Versatile Calculator' and set multiple records in addition and multiplication.",
+      },
+      {
+        name: 'Naofumi Ogasawara',
+        country: 'Japan',
+        yearOfAchievement: 2024,
+        achievement: 'Mental Calculation World Cup',
+        position: '1st Place (Perfect Score)',
+        descriptionOfAchievement:
+          'Achieved a perfect score of 500/500 across all standard mental arithmetic categories.',
+      },
+      {
+        name: 'Kaloyan Geshev',
+        country: 'Bulgaria',
+        yearOfAchievement: 2024,
+        achievement: 'Mental Calculation World Cup',
+        position: '2nd Overall',
+        descriptionOfAchievement:
+          'Excelled in square roots and calendar dates; also won the 2024 Junior World Championship.',
+      },
+      {
+        name: 'Hua Wei Chan',
+        country: 'Malaysia',
+        yearOfAchievement: 2024,
+        achievement: 'Mental Calculation World Cup',
+        position: '2nd Overall',
+        descriptionOfAchievement:
+          'Consistently placed in the top ranks for extreme mental multiplication and addition tasks.',
+      },
+      {
+        name: 'Jeonghee Lee',
+        country: 'South Korea',
+        yearOfAchievement: 2024,
+        achievement: 'Memoriad Mental Arithmetic',
+        position: '1st Place',
+        descriptionOfAchievement:
+          'A legendary abacus master who won the mental multiplication event at age 61.',
+      },
+      {
+        name: 'Samuel Engel',
+        country: 'USA',
+        yearOfAchievement: 2024,
+        achievement: 'Mental Calculation World Cup',
+        position: '8th (Mental Multiplication)',
+        descriptionOfAchievement:
+          "Ranked among the world's top ten for multiplying large numbers mentally.",
+      },
+      {
+        name: "Mohamed Iyed M'Ghozzi",
+        country: 'Algeria',
+        yearOfAchievement: 2024,
+        achievement: 'Junior Mental Calculation World Championship',
+        position: '1st Place (Junior Champion)',
+        descriptionOfAchievement:
+          'Crowned the best young mental calculator in the world for 2024.',
+      },
+      {
+        name: 'Kenneth Wilshire',
+        country: 'UK',
+        yearOfAchievement: 2024,
+        achievement: 'Mental Calculation World Cup',
+        position: '8th (Tie - Multiplication)',
+        descriptionOfAchievement:
+          'Top-performing UK participant in high-complexity multiplication tasks.',
+      },
+      {
+        name: 'Karen Kiffe',
+        country: 'Germany',
+        yearOfAchievement: 2024,
+        achievement: 'Mental Calculation World Cup',
+        position: '17th (Multiplication)',
+        descriptionOfAchievement:
+          'Represented Germany as one of the most consistent mental math competitors in Europe.',
+      },
+      {
+        name: 'Domenico Mancuso',
+        country: 'Italy',
+        yearOfAchievement: 2024,
+        achievement: 'Mental Calculation World Cup',
+        position: 'Top 25',
+        descriptionOfAchievement:
+          'Qualified and ranked within the elite group of international mental calculators.',
+      },
+    ],
+    [],
+  );
 
   const features = [
     {
@@ -89,122 +265,165 @@ export function Home() {
 
     const intervalId = window.setInterval(() => {
       championCarouselApi.scrollNext();
-    }, 10000);
+    }, 3000);
 
     return () => window.clearInterval(intervalId);
   }, [championCarouselApi, isChampionCarouselHovered]);
 
-  const championShowcases = [
+  const countryMeta = useMemo(
+    () => [
     {
       key: 'india',
-      accent: 'border-yellow-400/40 bg-gradient-to-br from-yellow-500/10 via-pink-500/10 to-purple-600/10 shadow-pink-500/20',
-      glow:
-        'bg-[radial-gradient(circle_at_top_right,rgba(255,215,0,0.22),transparent_30%),radial-gradient(circle_at_bottom_left,rgba(236,72,153,0.18),transparent_35%)]',
-      badge: 'Indian Champions',
-      badgeDot: 'bg-yellow-300',
-      badgeTextClass: 'text-yellow-100',
-      title: 'A global stage, with Indian talent leading the way',
-      description:
-        'Indian children consistently shine at global abacus tournaments, showing exceptional speed and accuracy on the world stage',
+      country: 'India',
       flagSrc: '/india-flag.jpeg',
       flagAlt: 'India flag',
-      flagLabel: 'India',
-      heroIcon: 'from-yellow-400 via-pink-500 to-purple-600',
-      heroShadow: 'shadow-pink-500/30',
-      sectionTitle: '2025 International Abacus World Cup (IAWC-3)',
-      cards: [
-        { name: 'Kushal', detail: 'Rank 1', tone: 'bg-yellow-500/10 border-yellow-400/25 text-yellow-100' },
-        { name: 'Jatin Prajapat', detail: 'Rank 2', tone: 'bg-pink-500/10 border-pink-400/25 text-pink-100' },
-        {
-          name: 'Aditya A. Wagh',
-          detail: 'Rank 3, 150 questions in under 5 minutes with 100% accuracy',
-          tone: 'bg-purple-500/10 border-purple-400/25 text-purple-100',
-        },
-      ],
-      highlights: [
-        {
-          title: '2026 Spotlight',
-          className: 'border-pink-400/20',
-          titleClass: 'text-pink-200',
-          items: [
-            {
-              name: 'Vihaan Pratap Singh',
-              text: '1st prize at the International Abacus Olympiad',
-            },
-            {
-              name: 'Shreyansh Kumar',
-              text: 'Triple Crown in 2026 across online and offline events',
-            },
-          ],
-        },
-        {
-          title: 'Global Honors',
-          className: 'border-cyan-400/20',
-          titleClass: 'text-cyan-200',
-          items: [
-            { name: 'Suryaansh', text: 'Champion title at the 22nd PAMA Global Competition' },
-            { name: 'Arush', text: '2nd Runner Up at the same competition in Ho Chi Minh City' },
-            {
-              name: 'Nainika Pandey',
-              text: '1st Place at the 4th International Level Abacus Arithmetic Competition 2025',
-            },
-            {
-              name: 'Pratyush Meshram',
-              text: '3rd Runner-Up at the PAMA Global Competition in Ho Chi Minh City',
-            },
-          ],
-        },
-      ],
+      accent:
+        'border-yellow-400/40 bg-gradient-to-br from-yellow-500/10 via-pink-500/10 to-purple-600/10 shadow-pink-500/20',
+      glow:
+        'bg-[radial-gradient(circle_at_top_right,rgba(255,215,0,0.22),transparent_30%),radial-gradient(circle_at_bottom_left,rgba(236,72,153,0.18),transparent_35%)]',
     },
     {
       key: 'usa',
+      country: 'USA',
+      flagSrc: '/usa-flag.png',
+      flagAlt: 'USA flag',
       accent: 'border-sky-400/40 bg-gradient-to-br from-sky-500/10 via-blue-500/10 to-red-500/10 shadow-sky-500/20',
       glow:
         'bg-[radial-gradient(circle_at_top_right,rgba(56,189,248,0.22),transparent_30%),radial-gradient(circle_at_bottom_left,rgba(239,68,68,0.16),transparent_35%)]',
-      badge: 'US Rising Stars',
-      badgeDot: 'bg-sky-300',
-      badgeTextClass: 'text-sky-100',
-      title: 'American talent making a global mark',
-      description:
-        'US kids are earning major honors in international abacus competitions with speed, consistency, and elite-level accuracy',
-      flagSrc: '/usa-flag.png',
-      flagAlt: 'USA flag',
-      flagLabel: 'USA',
-      heroIcon: 'from-sky-400 via-blue-500 to-red-500',
-      heroShadow: 'shadow-sky-500/30',
-      sectionTitle: '2025 International Online Abacus Olympiad',
-      cards: [
-        {
-          name: 'Shrish Dutta',
-          detail: 'Third Rank globally, 100% accuracy in 7 minutes',
-          tone: 'bg-sky-500/10 border-sky-400/25 text-sky-100',
-        },
-        {
-          name: 'Tanvi Batte',
-          detail: 'Top performer, 90% score',
-          tone: 'bg-blue-500/10 border-blue-400/25 text-blue-100',
-        },
-        {
-          name: 'Arav A. Menon',
-          detail: '96.66% in the Olympiad',
-          tone: 'bg-red-500/10 border-red-400/25 text-red-100',
-        },
-      ],
-      highlights: [
-        {
-          title: 'Super Champion Spotlight',
-          className: 'border-indigo-400/20',
-          titleClass: 'text-indigo-200',
-          items: [
-            {
-              name: 'Arvind Shah (Georgia, USA)',
-              text: "Recognized as a Super Champion at the SMA International Abacus Olympiad (SIAO) 2025, one of the competition's highest designations",
-            },
-          ],
-        },
-      ],
     },
-  ];
+    {
+      key: 'canada',
+      country: 'Canada',
+      flagSrc: '/canada-flag.png',
+      flagAlt: 'Canada flag',
+      accent: 'border-red-400/40 bg-gradient-to-br from-red-500/10 via-white/10 to-red-500/10 shadow-red-500/20',
+      glow:
+        'bg-[radial-gradient(circle_at_top_right,rgba(239,68,68,0.22),transparent_30%),radial-gradient(circle_at_bottom_left,rgba(248,113,113,0.14),transparent_35%)]',
+    },
+    {
+      key: 'japan',
+      country: 'Japan',
+      flagSrc: '/japan-flag.png',
+      flagAlt: 'Japan flag',
+      accent: 'border-rose-400/40 bg-gradient-to-br from-rose-500/10 via-pink-500/10 to-white/10 shadow-rose-500/20',
+      glow:
+        'bg-[radial-gradient(circle_at_top_right,rgba(244,63,94,0.2),transparent_30%),radial-gradient(circle_at_bottom_left,rgba(255,255,255,0.12),transparent_35%)]',
+    },
+    {
+      key: 'bulgaria',
+      country: 'Bulgaria',
+      flagSrc: '/bulgaria-flag.png',
+      flagAlt: 'Bulgaria flag',
+      accent: 'border-emerald-400/40 bg-gradient-to-br from-white/10 via-green-500/10 to-red-500/10 shadow-emerald-500/20',
+      glow:
+        'bg-[radial-gradient(circle_at_top_right,rgba(16,185,129,0.18),transparent_30%),radial-gradient(circle_at_bottom_left,rgba(239,68,68,0.14),transparent_35%)]',
+    },
+    {
+      key: 'malaysia',
+      country: 'Malaysia',
+      flagSrc: '/malaysia-flag.png',
+      flagAlt: 'Malaysia flag',
+      accent: 'border-amber-400/40 bg-gradient-to-br from-blue-500/10 via-red-500/10 to-yellow-500/10 shadow-amber-500/20',
+      glow:
+        'bg-[radial-gradient(circle_at_top_right,rgba(245,158,11,0.18),transparent_30%),radial-gradient(circle_at_bottom_left,rgba(59,130,246,0.14),transparent_35%)]',
+    },
+    {
+      key: 'south-korea',
+      country: 'South Korea',
+      flagSrc: '/south-korea-flag.png',
+      flagAlt: 'South Korea flag',
+      accent: 'border-slate-300/40 bg-gradient-to-br from-white/10 via-slate-500/10 to-red-500/10 shadow-slate-400/20',
+      glow:
+        'bg-[radial-gradient(circle_at_top_right,rgba(148,163,184,0.2),transparent_30%),radial-gradient(circle_at_bottom_left,rgba(239,68,68,0.14),transparent_35%)]',
+    },
+    {
+      key: 'algeria',
+      country: 'Algeria',
+      flagSrc: '/algeria-flag.png',
+      flagAlt: 'Algeria flag',
+      accent: 'border-emerald-400/40 bg-gradient-to-br from-emerald-500/10 via-white/10 to-red-500/10 shadow-emerald-500/20',
+      glow:
+        'bg-[radial-gradient(circle_at_top_right,rgba(16,185,129,0.2),transparent_30%),radial-gradient(circle_at_bottom_left,rgba(239,68,68,0.14),transparent_35%)]',
+    },
+    {
+      key: 'uk',
+      country: 'UK',
+      flagSrc: '/uk-flag.png',
+      flagAlt: 'UK flag',
+      accent: 'border-indigo-400/40 bg-gradient-to-br from-indigo-500/10 via-white/10 to-red-500/10 shadow-indigo-500/20',
+      glow:
+        'bg-[radial-gradient(circle_at_top_right,rgba(99,102,241,0.2),transparent_30%),radial-gradient(circle_at_bottom_left,rgba(239,68,68,0.14),transparent_35%)]',
+    },
+    {
+      key: 'germany',
+      country: 'Germany',
+      flagSrc: '/germany-flag.png',
+      flagAlt: 'Germany flag',
+      accent: 'border-amber-400/40 bg-gradient-to-br from-black/20 via-red-500/10 to-yellow-500/10 shadow-amber-500/20',
+      glow:
+        'bg-[radial-gradient(circle_at_top_right,rgba(250,204,21,0.18),transparent_30%),radial-gradient(circle_at_bottom_left,rgba(239,68,68,0.14),transparent_35%)]',
+    },
+    {
+      key: 'italy',
+      country: 'Italy',
+      flagSrc: '/italy-flag.png',
+      flagAlt: 'Italy flag',
+      accent: 'border-emerald-400/40 bg-gradient-to-br from-emerald-500/10 via-white/10 to-red-500/10 shadow-emerald-500/20',
+      glow:
+        'bg-[radial-gradient(circle_at_top_right,rgba(16,185,129,0.2),transparent_30%),radial-gradient(circle_at_bottom_left,rgba(239,68,68,0.14),transparent_35%)]',
+    },
+    ],
+    [],
+  );
+
+  const achieverGroups = useMemo(
+    () =>
+      countryMeta.map((meta) => ({
+        ...meta,
+        achievers: achievers.filter((achiever) => achiever.country === meta.country),
+      })),
+    [achievers],
+  );
+
+  const orderedCountryGroups = useMemo(
+    () => [
+      ...achieverGroups.filter((country) => country.country === 'USA'),
+      ...achieverGroups.filter((country) => country.country !== 'USA'),
+    ],
+    [achieverGroups],
+  );
+
+  useEffect(() => {
+    if (!championCarouselApi) return;
+
+    const activeIndex = orderedCountryGroups.findIndex(
+      (country) => country.country === selectedCountry,
+    );
+
+    if (activeIndex >= 0) {
+      championCarouselApi.scrollTo(activeIndex);
+    }
+  }, [championCarouselApi, orderedCountryGroups, selectedCountry]);
+
+  useEffect(() => {
+    if (!championCarouselApi) return;
+
+    const handleSelect = () => {
+      const currentIndex = championCarouselApi.selectedScrollSnap();
+      const currentCountry = orderedCountryGroups[currentIndex]?.country;
+
+      if (currentCountry) {
+        setSelectedCountry(currentCountry);
+      }
+    };
+
+    championCarouselApi.on('select', handleSelect);
+    handleSelect();
+
+    return () => {
+      championCarouselApi.off('select', handleSelect);
+    };
+  }, [championCarouselApi, orderedCountryGroups]);
 
   return (
     <div className="min-h-screen">
@@ -440,121 +659,101 @@ export function Home() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            whileHover={{ scale: 1.01 }}
             className="mt-6"
           >
-            <Carousel
-              opts={{ align: 'start', loop: true }}
-              setApi={setChampionCarouselApi}
-              className="relative cursor-pointer"
-              onMouseEnter={() => setIsChampionCarouselHovered(true)}
-              onMouseLeave={() => setIsChampionCarouselHovered(false)}
-            >
-              <CarouselPrevious className="hidden lg:flex z-30 -left-4 border-white/15 bg-black/70 text-white shadow-xl backdrop-blur-md hover:bg-black/80" />
-              <CarouselNext className="hidden lg:flex z-30 -right-4 border-white/15 bg-black/70 text-white shadow-xl backdrop-blur-md hover:bg-black/80" />
-              <CarouselContent className="-ml-4">
-                {championShowcases.map((showcase) => (
-                  <CarouselItem key={showcase.key} className="pl-4">
-                    <Card className={`relative overflow-hidden border-2 backdrop-blur-xl shadow-2xl ${showcase.accent}`}>
-                      <div className={`absolute inset-0 pointer-events-none ${showcase.glow}`} />
-                      <div className="relative grid grid-cols-1 lg:grid-cols-3 gap-0">
-                        <CardHeader className="lg:col-span-1 relative z-10 border-b lg:border-b-0 lg:border-r border-white/10 self-start h-fit">
-                          <div className="mb-3 flex items-center gap-3">
-                            <div
-                              className={`w-14 h-14 bg-gradient-to-br ${showcase.heroIcon} rounded-3xl flex items-center justify-center shadow-2xl ${showcase.heroShadow} shrink-0`}
-                            >
-                              <Award className="w-10 h-10 text-white" />
-                            </div>
-                            <div className="inline-flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-3 py-2 backdrop-blur-sm w-full">
-                              <img
-                                src={showcase.flagSrc}
-                                alt={showcase.flagAlt}
-                                className="h-10 w-16 rounded-md border border-black/20 object-cover shadow-sm"
-                              />
-                              <div>
-                                <p className="text-xs font-bold uppercase tracking-[0.25em] text-slate-300">
-                                  {showcase.flagLabel}
-                                </p>
-                              </div>
-                            </div>
-                          </div>
-                          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/15 w-fit mb-2">
-                            <span className={`w-2 h-2 rounded-full ${showcase.badgeDot} animate-pulse`} />
-                            <span className={`text-xs font-bold uppercase tracking-wider ${showcase.badgeTextClass}`}>
-                              {showcase.badge}
-                            </span>
-                          </div>
-                          <CardTitle className="text-white text-3xl font-black leading-tight mb-1">
-                            {showcase.title}
-                          </CardTitle>
-                          <p className="text-slate-200 text-base leading-snug">
-                            {showcase.description}
-                          </p>
-                        </CardHeader>
+            <Card className="relative overflow-hidden border-2 border-white/10 bg-gradient-to-br from-black/70 via-slate-950/70 to-black/70 backdrop-blur-xl shadow-2xl">
+              <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_top_right,rgba(255,215,0,0.16),transparent_26%),radial-gradient(circle_at_bottom_left,rgba(56,189,248,0.14),transparent_28%)]" />
+              <div className="relative grid grid-cols-1 lg:grid-cols-2">
+                <div className="relative z-10 min-w-0 border-b lg:border-b-0 lg:border-r border-white/10 p-6 md:p-8">
+                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/15 w-fit mb-4">
+                    <Award className="w-4 h-4 text-yellow-300" />
+                    <span className="text-xs font-bold uppercase tracking-wider text-yellow-100">
+                      Global Achievers
+                    </span>
+                  </div>
+                  <CardTitle className="text-white text-4xl md:text-5xl font-black leading-tight mb-4">
+                    Champions Across Borders
+                  </CardTitle>
+                  <p className="text-slate-200 text-lg leading-relaxed mb-6">
+                    From Asia to Europe and North America, these young achievers prove that focus,
+                    practice, and confidence can turn numbers into unforgettable victories.
+                  </p>
 
-                        <CardContent className="lg:col-span-2 relative z-10 py-8">
-                          <div className="space-y-4">
-                            <div className="rounded-2xl bg-black/25 border border-white/10 p-5">
-                              <p className={`text-sm font-semibold uppercase tracking-wide mb-3 ${showcase.badgeTextClass}`}>
-                                {showcase.sectionTitle}
-                              </p>
-                              <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-                                {showcase.cards.map((card) => (
-                                  <div key={card.name} className={`rounded-xl border p-4 ${card.tone}`}>
-                                    <p className="font-bold">{card.name}</p>
-                                    <p className="text-sm text-slate-300">{card.detail}</p>
-                                  </div>
-                                ))}
-                              </div>
-                            </div>
+                  <div className="grid grid-cols-5 sm:grid-cols-6 gap-3">
+                    {orderedCountryGroups.map((country) => (
+                      <button
+                        key={country.key}
+                        type="button"
+                        onClick={() => setSelectedCountry(country.country)}
+                        className={`group rounded-2xl border bg-white/5 p-2 backdrop-blur-sm transition-all duration-300 hover:scale-105 ${
+                          selectedCountry === country.country
+                            ? 'border-white/70 shadow-lg shadow-pink-500/20'
+                            : 'border-white/10 hover:border-white/30'
+                        }`}
+                      >
+                        <div className="relative">
+                          <div className={`absolute inset-0 rounded-xl blur-md opacity-50 ${country.glow}`} />
+                          <img
+                            src={country.flagSrc}
+                            alt={country.flagAlt}
+                            className="relative h-12 w-full rounded-xl border border-white/15 object-cover shadow-md"
+                          />
+                        </div>
+                        <span className="sr-only">{country.name}</span>
+                      </button>
+                    ))}
+                  </div>
+                </div>
 
-                            {showcase.highlights.length > 1 ? (
-                              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                {showcase.highlights.map((highlight) => (
-                                  <div
-                                    key={highlight.title}
-                                    className={`rounded-2xl bg-black/25 border p-5 ${highlight.className}`}
-                                  >
-                                    <p className={`text-sm font-semibold uppercase tracking-wide mb-2 ${highlight.titleClass}`}>
-                                      {highlight.title}
-                                    </p>
-                                    <div className="space-y-2 text-slate-200">
-                                      {highlight.items.map((item) => (
-                                        <p key={item.name}>
-                                          <span className="text-white font-bold">{item.name}:</span> {item.text}
-                                        </p>
-                                      ))}
-                                    </div>
-                                  </div>
-                                ))}
-                              </div>
-                            ) : (
-                              showcase.highlights.map((highlight) => (
-                                <div
-                                  key={highlight.title}
-                                  className={`rounded-2xl bg-black/25 border p-5 ${highlight.className}`}
-                                >
-                                  <p className={`text-sm font-semibold uppercase tracking-wide mb-2 ${highlight.titleClass}`}>
-                                    {highlight.title}
+                <div className="relative z-10 min-w-0 p-6 md:p-8 lg:py-10">
+                  <Carousel
+                    opts={{ align: 'start', loop: true }}
+                    setApi={setChampionCarouselApi}
+                    className="relative cursor-pointer"
+                    onMouseEnter={() => setIsChampionCarouselHovered(true)}
+                    onMouseLeave={() => setIsChampionCarouselHovered(false)}
+                  >
+                    <CarouselContent className="-ml-4">
+                      {orderedCountryGroups.map((country) => (
+                        <CarouselItem key={country.key} className="pl-4">
+                          <div className={`relative overflow-hidden rounded-3xl border-2 p-6 md:p-8 ${country.accent}`}>
+                            <div className={`absolute inset-0 pointer-events-none ${country.glow}`} />
+                            <div className="relative">
+                              <div className="mb-5 flex items-center gap-3">
+                                <img
+                                  src={country.flagSrc}
+                                  alt={country.flagAlt}
+                                  className="h-12 w-20 rounded-xl border border-white/15 object-cover shadow-lg"
+                                />
+                                <div>
+                                  <p className="text-xs font-bold uppercase tracking-[0.35em] text-slate-300">
+                                    Country Spotlight
                                   </p>
-                                  <div className="space-y-2 text-slate-200">
-                                    {highlight.items.map((item) => (
-                                      <p key={item.name}>
-                                        <span className="text-white font-bold">{item.name}:</span> {item.text}
-                                      </p>
-                                    ))}
-                                  </div>
+                                  <h3 className="text-3xl font-black text-white">{country.country}</h3>
                                 </div>
-                              ))
-                            )}
+                              </div>
+                              <div className="space-y-3">
+                                {country.achievers.map((achiever) => (
+                                  <div
+                                    key={`${achiever.name}-${achiever.country}-${achiever.achievement}`}
+                                    className="rounded-2xl border border-white/10 bg-black/25 px-5 py-4"
+                                  >
+                                    <p className="text-white text-xl font-bold tracking-tight">
+                                      {achiever.name}
+                                    </p>
+                                    <p className="mt-1 text-slate-300 text-sm">{achiever.achievement}</p>
+                                  </div>
+                                ))}
+                              </div>
+                            </div>
                           </div>
-                        </CardContent>
-                      </div>
-                    </Card>
-                  </CarouselItem>
-                ))}
-              </CarouselContent>
-            </Carousel>
+                        </CarouselItem>
+                      ))}
+                    </CarouselContent>
+                  </Carousel>
+                </div>
+              </div>
+            </Card>
           </motion.div>
         </div>
       </section>
